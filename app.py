@@ -7,7 +7,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
 from pipeline import recommend_crop, crop_info, heavy_feeders, nitrogen_fixers
 
 st.set_page_config(
-    page_title="CropRotate AI",
+    page_title="CropSense",
     page_icon="🌾",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -301,6 +301,49 @@ section[data-testid="stSidebar"] .stButton > button:hover {
 }
 .sidebar-logo    { font-family:'Space Grotesk',sans-serif; font-size:1.55rem; font-weight:700; color:white !important; margin-bottom:0.2rem; }
 .sidebar-tagline { font-size:0.75rem; color:rgba(255,255,255,0.60) !important; margin-bottom:1.5rem; }
+
+/* ── Selectbox — white box, black text, always ── */
+section[data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"] > div:first-child {
+    background-color: #ffffff !important;
+    border: 1.5px solid rgba(255,255,255,0.3) !important;
+    border-radius: 10px !important;
+}
+section[data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"] * {
+    color: #0f172a !important;
+    background-color: transparent !important;
+}
+section[data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"] > div:first-child,
+section[data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"] > div:first-child * {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+}
+/* Dropdown list (portal, outside sidebar DOM) */
+[data-baseweb="popover"] ul,
+[data-baseweb="popover"] [role="listbox"],
+[data-baseweb="menu"] {
+    background-color: #ffffff !important;
+    border: 1px solid #d1fae5 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.10) !important;
+}
+[data-baseweb="popover"] li,
+[data-baseweb="popover"] [role="option"],
+[data-baseweb="menu"] li {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+}
+[data-baseweb="popover"] li:hover,
+[data-baseweb="popover"] [role="option"]:hover,
+[data-baseweb="menu"] li:hover,
+[data-baseweb="popover"] [aria-selected="true"],
+[data-baseweb="popover"] [role="option"][aria-selected="true"] {
+    background-color: #f0fdf4 !important;
+    color: #166534 !important;
+}
+[data-baseweb="popover"] *,
+[data-baseweb="menu"] * {
+    color: #0f172a !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -344,7 +387,7 @@ def mini_stat(val, unit, label, color="#15803d"):
 # SIDEBAR
 # ─────────────────────────────────────────────
 with st.sidebar:
-    st.markdown('<div class="sidebar-logo">🌾 CropRotate AI</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sidebar-logo">🌾 CropSense</div>', unsafe_allow_html=True)
     st.markdown('<div class="sidebar-tagline">Precision Agriculture · KNN + Random Forest</div>', unsafe_allow_html=True)
     st.markdown("---")
 
