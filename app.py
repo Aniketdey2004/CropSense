@@ -498,7 +498,13 @@ if run:
             rainfall=rainfall
         )
     if results.empty:
-        st.warning("⚠️ No crops matched these soil conditions. Try adjusting the sliders.")
+        st.markdown("""
+        <div style="background:#fff7ed;border:1px solid #fdba74;border-radius:14px;
+        padding:1.2rem 1.5rem;font-size:1rem;color:#9a3412;">
+        ⚠️ <b>No crops matched these soil conditions.</b><br>
+        <span style="font-size:0.88rem;">Try adjusting Nitrogen, Rainfall or Humidity sliders slightly.</span>
+        </div>
+        """, unsafe_allow_html=True)
         st.stop()
 
     top   = results[results['final_score'] >= 20].head(5)
