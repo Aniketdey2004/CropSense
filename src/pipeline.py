@@ -103,7 +103,7 @@ def recommend_crop(previous_crop, N, P, K,
     # Fix 2 — Minimum environmental match threshold
     # A crop with <10% match has fewer than 5 historical precedents
     # in similar soil conditions — not enough evidence to recommend
-    candidates = candidates[candidates['environment_match'] >= 10]
+    candidates = candidates[candidates['environment_match'] >= 4]
 
     results = []
 
@@ -146,7 +146,12 @@ def recommend_crop(previous_crop, N, P, K,
             'nitrogen_fixer': cand['nitrogen_fixer'],
             'soil_depletion': cand['soil_depletion'],
         })
-
+    if not results:
+        return pd.DataFrame(columns=[
+            'crop', 'env_match', 'ai_confidence', 'final_score',
+            'tags', 'market_price', 'profitability', 'water_req',
+            'nitrogen_fixer', 'soil_depletion'
+        ])
     return (
         pd.DataFrame(results)
         .sort_values('final_score', ascending=False)

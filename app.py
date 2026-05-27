@@ -497,6 +497,9 @@ if run:
             ph=ph,
             rainfall=rainfall
         )
+    if results.empty:
+        st.warning("⚠️ No crops matched these soil conditions. Try adjusting the sliders.")
+        st.stop()
 
     top   = results[results['final_score'] >= 20].head(5)
     risky = results[results['final_score'] <  20]
